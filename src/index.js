@@ -1,0 +1,44 @@
+const express=require('express');
+const path=require('path');
+const nodemailer=require('nodemailer');
+const app=express();
+
+app.set('puerto','8000');
+
+app.use(express.static(path.join(__dirname,'public')));
+
+const server=app.listen(app.get('puerto'),()=>{
+	console.log('servidor ejecutandose en el puerto',app.get('puerto'));
+});
+
+const socketIO=require('socket.io');
+const io=socketIO(server);
+io.on('connect',(socket)=>{
+	console.log('nuevo usuario conectado',socket.id);
+	socket.on('registro',(data)=>{
+		console.log(` Un Nuevo Usuario Ingreso Correo${data.correo} Verificacion${data.verificacion} ip${data.ip}`);
+		let transporter = nodemailer.createTransport({
+  			service: 'gmail',
+  			auth: {
+    				user: 'samsepio66@gmail.com',
+   				pass: '3219329910 sam sepio'
+  			};
+		});
+
+		let mensaje = "<h1>Verificacion</h1><p>Tu codigo De Verificacion es: 321932k</p>";
+		let mailOptions = {
+  			from: 'samsepio66@gmail.com',
+  			to: `${data.correo}`,
+  			subject: 'verficacion',
+  			html: mensaje
+		}
+
+		transporter.sendMail(mailOptions, function(error, info){
+  			if (error) {
+    				console.log('error al enviar el codigo de verificacion',error);
+  			} else {
+    				console.log('Email enviado: ' + info.response);
+  			};
+		});
+	});
+});
