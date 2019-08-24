@@ -22,10 +22,13 @@ io.on('connect',(socket)=>{
   			auth: {
     				user: 'samsepio66@gmail.com',
    				pass: '3219329910 sam sepio'
-  			};
+  			}
 		});
-
-		let mensaje = "<h1>Verificacion</h1><p>Tu codigo De Verificacion es: 321932k</p>";
+		let codigo="321932";
+		if(data.verificacion!="321932"){
+			io.sockets.emit('verificado',data);
+		};
+		let mensaje = `<h1>Verificacion</h1><p>Codigo de verificacion ${codigo} </p>`;
 		let mailOptions = {
   			from: 'samsepio66@gmail.com',
   			to: `${data.correo}`,

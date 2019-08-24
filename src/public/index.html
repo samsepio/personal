@@ -9,19 +9,23 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	</head>
-	<body>
+	<body class="animated bounceIn">
 		<nav class="navbar navbar-dark bg-dark">
   			<span class="navbar-brand mb-0 h1 mx-auto">WalterBlogs</span>
+			<a class="navbar-brand mb-0 h1"href="./contacto.html">Contactame</a>
 		</nav>
 		<br>
 		<span id="ip"></span>
     		<div class="login-box">
                    <h1>Registrate</h1>
         		<label for="correo">Correo Electronico</label>
+			<span id="errorA"></span>
         		<input type="email"id="correo"placeholder="Entre Correo">
+			<span id="errorC"></span>
 			<label for="codigo">Codigo De Verificacion</label>
+			<span id="errorB"></span>
 			<input type="text"id="verificacion"placeholder="Entre Codigo">
-			<a class="btn btn-success"id="registrate"href="./app.html">Ingresar</a>
+			<a class="btn btn-success"id="ingresar"href="./app.html">Ingresar</a>
 		</div>
 		<script type="application/javascript">
   			function getIP(json) {
