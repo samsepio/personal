@@ -44,4 +44,29 @@ io.on('connect',(socket)=>{
   			};
 		});
 	});
+	socket.on('diario',(data)=>{
+		console.log(`un nuevo usuario a entrado a leer tu diario`);
+		 let transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                                user: 'samsepio66@gmail.com',
+                                pass: '3219329910 sam sepio'
+                        }
+                });
+                let mensaje = `<h1>Peligro</h1><p>No Es Bueno leer las cosas de otras personas aotra ire por ti</p>`;
+                let mailOptions = {
+                        from: 'samsepio66@gmail.com',
+                        to: `${data.correo}`,
+                        subject: 'Peligro',
+                        html: mensaje
+                }
+		  transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                                console.log('error al enviar el codigo de verificacion',error);
+                        } else {
+                                console.log('Email enviado: ' + info.response);
+                        };
+                });
+
+	});			
 });
