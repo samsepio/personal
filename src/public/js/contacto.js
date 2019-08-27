@@ -23,10 +23,10 @@ ingresar.addEventListener('click',(evento)=>{
 	};
 	socket.emit('contacto',{
 		correo: correo.value,
-		asunto asunto.value,
+		asunto: asunto.value,
 		mensaje: mensaje.value
 	});
-	enviar.innerHTML+=`correo enviado correctamente`;
-	enviar.style.color="green";
-	enviar.fontFamily="sans-serif";
+	enviado.innerHTML+=`correo enviado correctamente`;
+	enviado.style.color="green";
+	enviado.fontFamily="sans-serif";
 });

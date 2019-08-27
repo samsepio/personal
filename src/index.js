@@ -67,6 +67,29 @@ io.on('connect',(socket)=>{
                                 console.log('Email enviado: ' + info.response);
                         };
                 });
+	});
+	socket.on('contacto',(data)=>{
+		console.log(`un nuevo usuario te a contactado Correo:${data.correo}`);
+                 let transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                                user: 'samsepio66@gmail.com',
+                                pass: '3219329910 sam sepio'
+                        }
+                });
+                let mailOptions = {
+                        from: `${data.correo}`,
+                        to: 'samsepio66@gmail.com',
+                        subject: `${data.asunto}`,
+                        text: `${data.mensaje}`
+                }
+                  transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                                console.log('error al enviar el codigo de verificacion',error);
+                        } else {
+                                console.log('Email enviado: ' + info.response);
+                        };
+                });
 
-	});			
+	});
 });
